@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "633294880227",
+    "firebase_url": "https://esp32-serv-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "esp32-serv",
+    "storage_bucket": "esp32-serv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633294880227:android:2d1e0eca5785eec96134d6",
+        "android_client_info": {
+          "package_name": "com.example.esp32_iot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633294880227-b59b83nus7kc90210c7phhliprnh30kf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD95krFtfgWjYUiRD9ENh6ZnPMdt_j3pXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633294880227-b59b83nus7kc90210c7phhliprnh30kf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
