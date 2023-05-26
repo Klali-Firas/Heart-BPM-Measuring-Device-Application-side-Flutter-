@@ -30,6 +30,35 @@ class _UserData extends State<UserData> {
   late double min = 0;
   late Stream<DateTime> dateTimeStream;
   late Timer timer;
+  int dangerlow = 0;
+  int dangerhigh = 0;
+
+  void checkDangerLow() {
+    if (dangerlow < 2) {
+      dangerlow++;
+    } else {
+      NotificationService().showNotification(
+          body: "Your heart rate is at dangerous rate!",
+          title: "Your heart rate is very low!",
+          channelName: "Low",
+          channelID: "low");
+      dangerlow = 0;
+    }
+  }
+
+  void checkDangerhigh() {
+    if (dangerhigh < 2) {
+      dangerhigh++;
+    } else {
+      NotificationService().showNotification(
+          body: "Your heart rate is at dangerous rate!",
+          title: "Your heart rate is very high!",
+          channelName: "High",
+          channelID: "high");
+      dangerhigh = 0;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -46,8 +75,18 @@ class _UserData extends State<UserData> {
           min = spots[spots.length <= 12 ? 0 : (spots.length - 12).toInt()].y;
 
           bpm = (data["BPM"].toString());
-          if (double.parse(bpm) > 150 || double.parse(bpm) < 60) {
+          if (double.parse(bpm) > 150 || double.parse(bpm) < 50) {
             bpm = spots[spots.length - 1].y.toString();
+          }
+          if (double.parse(bpm) < 60) {
+            checkDangerLow();
+          } else {
+            dangerlow = 0;
+          }
+          if (double.parse(bpm) > 120) {
+            checkDangerhigh();
+          } else {
+            dangerhigh = 0;
           }
           spots.add(FlSpot(spots.length.toDouble(), double.parse(bpm)));
 
@@ -70,8 +109,6 @@ class _UserData extends State<UserData> {
           actions: [
             IconButton(
               onPressed: () {
-                NotificationService()
-                    .showNotification(title: 'Danger!', body: 'Hello World!');
                 Navigator.pushNamed(context, '/third');
               },
               icon: Image.asset(

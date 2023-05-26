@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationService {
@@ -22,19 +23,24 @@ class NotificationService {
             (NotificationResponse notificationResponse) async {})*/
   }
 
-  notificationDetails() {
-    return const NotificationDetails(
+  notificationDetails(String channelName, String channelID) {
+    return NotificationDetails(
         android: AndroidNotificationDetails(
-      'channelId',
-      'Dead?',
+      channelID,
+      channelName,
       importance: Importance.max,
       priority: Priority.high,
     ));
   }
 
   Future showNotification(
-      {int id = 0, String? title, String? body, String? payload}) async {
+      {int id = 0,
+      String? title,
+      String? body,
+      String? payload,
+      required String channelName,
+      required String channelID}) async {
     return notificationsPlugin.show(
-        id, title, body, await notificationDetails());
+        id, title, body, await notificationDetails(channelName, channelID));
   }
 }
