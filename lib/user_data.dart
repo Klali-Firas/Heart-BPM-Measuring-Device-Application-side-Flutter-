@@ -1,7 +1,5 @@
-import 'dart:ffi';
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import './widgets/login.dart';
 import 'widgets/chart.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -62,7 +60,6 @@ class _UserData extends State<UserData> {
   @override
   void initState() {
     super.initState();
-
     dateTimeStream = Stream<DateTime>.periodic(
         const Duration(seconds: 1), (_) => DateTime.now());
     timer = Timer.periodic(const Duration(seconds: 1), (_) => setState(() {}));
@@ -76,7 +73,7 @@ class _UserData extends State<UserData> {
 
           bpm = (data["BPM"].toString());
           if (double.parse(bpm) > 150 || double.parse(bpm) < 50) {
-            bpm = spots[spots.length - 1].y.toString();
+            bpm = spots[spots.length - 1].y.toInt().toString();
           }
           if (double.parse(bpm) < 60) {
             checkDangerLow();
@@ -168,25 +165,23 @@ class _UserData extends State<UserData> {
                           min: min,
                         ))),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    card("BPM", bpm),
-                    card(
-                        "AVG",
-                        (avg ~/ (spots.length <= 12 ? spots.length : 12))
-                            .toString()),
-                  ],
-                ),
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      card("BPM", bpm),
+                      card(
+                          "AVG",
+                          (avg ~/ (spots.length <= 12 ? spots.length : 12))
+                              .toString()),
+                    ]),
                 const SizedBox(
                   height: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    card("MIN", min.toInt().toString()),
-                    card("MAX", max.toInt().toString()),
-                  ],
-                ),
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      card("MIN", min.toInt().toString()),
+                      card("MAX", max.toInt().toString()),
+                    ]),
               ]),
             ),
           ),
@@ -216,7 +211,5 @@ Widget card(String lead, String trail) {
                 style: const TextStyle(color: Colors.pink, fontSize: 19)),
           ],
         )),
-
-    /**/
   );
 }

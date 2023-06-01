@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationService {
@@ -6,10 +5,6 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> initNotification() async {
-    /*notificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestPermission();*/
     AndroidInitializationSettings initializationSettingsAndroid =
         const AndroidInitializationSettings('@mipmap/launcher_icon');
     var initializationSettings = InitializationSettings(
@@ -19,8 +14,6 @@ class NotificationService {
     await notificationsPlugin.initialize(
       initializationSettings,
     );
-    /*onDidReceiveBackgroundNotificationResponse:
-            (NotificationResponse notificationResponse) async {})*/
   }
 
   notificationDetails(String channelName, String channelID) {

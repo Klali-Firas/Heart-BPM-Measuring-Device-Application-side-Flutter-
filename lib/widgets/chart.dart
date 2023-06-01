@@ -37,16 +37,15 @@ class Chart extends StatelessWidget {
           ),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
-              interval: 2,
-              showTitles: true,
-              reservedSize: 30,
-              getTitlesWidget: (value, meta) {
-                return Text(
-                  value.toInt() % 2 == 0 ? value.toInt().toString() : "",
-                  style: const TextStyle(color: Colors.grey),
-                );
-              },
-            ),
+                interval: 2,
+                showTitles: true,
+                reservedSize: 30,
+                getTitlesWidget: (value, meta) {
+                  return Text(
+                    value.toInt() % 2 == 0 ? value.toInt().toString() : "",
+                    style: const TextStyle(color: Colors.grey),
+                  );
+                }),
           ),
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
@@ -89,12 +88,6 @@ class Chart extends StatelessWidget {
                 color: Color.fromARGB(100, 158, 158, 158),
                 offset: Offset(0, 15),
                 blurRadius: 1),
-            /*belowBarData: BarAreaData(
-                show: true,
-                gradient: const LinearGradient(colors: [
-                  Color.fromARGB(100, 244, 67, 54),
-                  Color.fromARGB(100, 233, 30, 99)
-                ])),*/
             gradient: const LinearGradient(colors: [Colors.red, Colors.pink]),
             isCurved: true,
             curveSmoothness: 0.35,

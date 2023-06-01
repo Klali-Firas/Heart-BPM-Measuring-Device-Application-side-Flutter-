@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import './widgets/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,8 +8,6 @@ import 'firebase_options.dart';
 import 'user_data.dart';
 import 'about.dart';
 import 'widgets/Notification.dart';
-
-// ...
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
